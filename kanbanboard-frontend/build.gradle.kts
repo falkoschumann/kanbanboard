@@ -1,6 +1,8 @@
 plugins {
     id("org.jetbrains.kotlin.jvm")
     id("org.jlleitschuh.gradle.ktlint")
+    id("org.openjfx.javafxplugin")
+    id("org.beryx.jlink")
     `java-library`
 }
 
@@ -10,4 +12,15 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+}
+
+javafx {
+    version = "14"
+    modules("javafx.controls", "javafx.fxml")
+}
+
+jlink {
+    launcher {
+        name = "kanbanboard"
+    }
 }
