@@ -1,6 +1,8 @@
 plugins {
     id("org.jetbrains.kotlin.jvm")
     id("org.jlleitschuh.gradle.ktlint")
+    id("org.openjfx.javafxplugin")
+    id("org.beryx.jlink")
     application
 }
 
@@ -14,5 +16,18 @@ dependencies {
 }
 
 application {
+    mainModule.set("de.muspellheim.kanbanboard")
+    mainClass.set("de.muspellheim.kanbanboard.AppKt")
     mainClassName = "de.muspellheim.kanbanboard.AppKt"
+}
+
+javafx {
+    version = "15"
+    modules("javafx.controls")
+}
+
+jlink {
+    launcher {
+        name = "kanbanboard"
+    }
 }

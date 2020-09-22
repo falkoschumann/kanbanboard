@@ -2,7 +2,6 @@ plugins {
     id("org.jetbrains.kotlin.jvm")
     id("org.jlleitschuh.gradle.ktlint")
     id("org.openjfx.javafxplugin")
-    id("org.beryx.jlink")
     `java-library`
 }
 
@@ -15,12 +14,6 @@ dependencies {
 }
 
 javafx {
-    version = "14"
+    version = "15"
     modules("javafx.controls", "javafx.fxml")
-}
-
-jlink {
-    launcher {
-        name = "kanbanboard"
-    }
 }
