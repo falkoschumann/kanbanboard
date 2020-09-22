@@ -1,3 +1,3 @@
 module de.muspellheim.kanbanboard {
-    requires kotlin.stdlib;
+  requires kotlin.stdlib;
 }

@@ -3,9 +3,11 @@
  */
 package de.muspellheim.kanbanboard
 
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 
+@Ignore
 class AppTest {
     @Test fun testAppHasAGreeting() {
         val classUnderTest = App()
