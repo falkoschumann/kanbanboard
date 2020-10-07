@@ -22,9 +22,9 @@ Aktivitäten mit WIP und Unterscheidung in Arbeit oder fertig (Karte gerade)
 1.  Input Queue (wird aus Backlog gefüllt)
 2.  Analyse (Start Messung SLA, active)
 3.  Entwicklung
-4.  Test
-5.  Stage
-6.  Produktiv (Ende Messung SLA, inactive)
+4.  Testen
+5.  Stage (Ende Messung SLA, inactive)
+6.  Produktiv
 
 Zwischen den Aktivitäten können Puffer mit eigenen WIP stehen (Karte um 45°
 gedreht)
@@ -34,20 +34,20 @@ gedreht)
 3.  Puffer: Bereit für Entwicklung
 4.  Entwicklung
 5.  Puffer: Bereit für Build
-6.  Test
+6.  Testen
 7.  Puffer: Bereit für Release
 8.  Stage
 9.  Produktiv
 
 Aufgabe geht als Karte bzw. Ticket von links nach rechts mit den Informationen 
 
--   elektronische ID-Nummer (oben rechts)
+-   elektronische ID-Nummer (oben links)
 -   Titel (Mitte)
 -   Startdatum (unten links)
--   optional fester Lieferdatum (unten rechts)
+-   optional fester Liefertermin (unten rechts)
 -   Zugewiesenes Teammitglied (Avatar oder Kürzel)
 -   Ist SLA überschritten (Stern)
--   Optional hat Blocker (als zusätzliche Karte oben drauf)
+-   Optional hat Blocker (als zusätzliche Karte obendrauf)
 
 Aufgabentypen
 
@@ -56,7 +56,7 @@ Aufgabentypen
     -   Beschreibung
     -   Optional aber sinnvoll: Akzeptanzkriterien
     -   Größenordnung < 1 Woche
-    -   Markierung: Feature oder Hotfix
+    -   Markierung als Feature oder Hotfix
 -   Epic
     -   grün
     -   Beschreibung
@@ -76,7 +76,7 @@ Serviceklassen
 -   Fester Liefertermin
     -   violett
     -   Liefertermin
-    -   Aufwandsschätzung notwendig
+    -   Aufwandsschätzung notwendig und bei Bedarf zerlegen
     -   Muss rechtzeitig in Input Queue übernommen werden
     -   Hat Vorrang vor Standardklasse und unbestimmte Kosten
 -   Standardklasse
@@ -86,7 +86,7 @@ Serviceklassen
     -   Eventuell Größenordnung klassifizieren (S: wenige Tage, M 1-2 Wochen, L:
         mehrere Monate) und bei Bedarf zerlegen
     -   Beispiel für SLA: Durchlaufzeit 30 Tage, bei 80 % Termintreue 
--   Unbestimmte Kosten
+-   Unbestimmbare Kosten
     -   grün
     -   Wird bearbeitet, wenn keine Aufgabe höherer Priorität in Input Queue
     -   Keine Aufwandsschätzung
