@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/falkoschumann/kanbanboard.svg?branch=master)](https://travis-ci.org/falkoschumann/kanbanboard)
 
 Ein Kanban Board zur Visualisierung von Aufgaben mit Spalten für die dafür
-notwendigen Aktivitäten.
+notwendigen Aktivitäten. 
 
 Erfolgsrezept nach David J. Anderson
 
@@ -19,12 +19,12 @@ Beispiel:
 
 Aktivitäten mit WIP und Unterscheidung in Arbeit oder fertig (Karte gerade)
 
-1.  Input Queue
-2.  Analyse (Start Messung SLA)
+1.  Input Queue (wird aus Backlog gefüllt)
+2.  Analyse (Start Messung SLA, active)
 3.  Entwicklung
 4.  Test
 5.  Stage
-6.  Produktiv (Ende Messung SLA)
+6.  Produktiv (Ende Messung SLA, inactive)
 
 Zwischen den Aktivitäten können Puffer mit eigenen WIP stehen (Karte um 45°
 gedreht)
@@ -49,7 +49,52 @@ Aufgabe geht als Karte bzw. Ticket von links nach rechts mit den Informationen
 -   Ist SLA überschritten (Stern)
 -   Optional hat Blocker (als zusätzliche Karte oben drauf)
 
+Aufgabentypen
 
+-   Story
+    -   gelb
+    -   Beschreibung
+    -   Optional aber sinnvoll: Akzeptanzkriterien
+    -   Größenordnung < 1 Woche
+    -   Markierung: Feature oder Hotfix
+-   Epic
+    -   grün
+    -   Beschreibung
+    -   Optional: Akzeptanzkriterien
+    -   Größenordnung ≥ 1 Monat
+    -   Als zweistufiges Board oder Swimlanes darstellen
+-   Blocker
+    -   rosa
+    -   Referenz auf blockiertes Ticket
+
+Serviceklassen
+
+-   Beschleunigt
+    -   weiß
+    -   WIP = 1 auf Board, andere WIP dürfen überschritten werden 
+    -   Wird vor allen anderen Aufgaben aus Input Queue gezogen
+-   Fester Liefertermin
+    -   violett
+    -   Liefertermin
+    -   Aufwandsschätzung notwendig
+    -   Muss rechtzeitig in Input Queue übernommen werden
+    -   Hat Vorrang vor Standardklasse und unbestimmte Kosten
+-   Standardklasse
+    -   gelb
+    -   Wird per FIFO oder Priorisierung in Input Queue übernommen
+    -   Keine Aufwandsschätzung
+    -   Eventuell Größenordnung klassifizieren (S: wenige Tage, M 1-2 Wochen, L:
+        mehrere Monate) und bei Bedarf zerlegen
+    -   Beispiel für SLA: Durchlaufzeit 30 Tage, bei 80 % Termintreue 
+-   Unbestimmte Kosten
+    -   grün
+    -   Wird bearbeitet, wenn keine Aufgabe höherer Priorität in Input Queue
+    -   Keine Aufwandsschätzung
+    -   Eventuell Größenordnung klassifizieren (S: wenige Tage, M 1-2 Wochen, L:
+        mehrere Monate) und bei Bedarf zerlegen
+    -   Beispiel für SLA: Durchlaufzeit 60 Tage, bei 50 % Termintreue
+
+Visualisierung der Eigenschaften Aufgabentyp, Hierarchieebene und Serviceklasse
 
 ## Installation
 
