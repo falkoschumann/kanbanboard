@@ -1,0 +1,12 @@
+.activity-column {
+    -fx-font-family: Verdana Arial sans-serif;
+    -fx-background-color: #fff;
+}
+
+.activity-column .header .wip {
+    -fx-font-style: italic;
+}
+
+.activity-column .header .headerText {
+    -fx-font-weight: bold;
+}
