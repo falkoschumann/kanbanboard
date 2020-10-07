@@ -1,0 +1,34 @@
+@startuml
+title Softwareentwicklungsprozess
+
+[*] --> Open : erfasst
+
+Open : Die Aufgabe ist im Backlog erfasst,\naber noch nicht im Prozess vorhanden.
+Open --> Ready : eingebracht
+Open --> Epic : zerlegt
+Open --> Canceled : abgebrochen
+
+Ready : Die Aufgabe ist bereit zum Bearbeiten.\nDas Startdatum wurde gesetzt.\n(Input Queue)
+Ready --> InProgress : gestartet
+Ready --> Canceled : abgebrochen
+note right of Ready : WIP=5
+
+InProgress : Die Aufgabe ist in Bearbeitung.
+InProgress --> Done : erledigt
+InProgress --> Canceled : abgebrochen
+note right of InProgress : WIP=1
+
+Done : Die Aufgabe ist implementiert.\nDas Enddatum wurde gesetzt.
+Done --> Released : geliefert
+Done --> Canceled : abgebrochen
+
+Released : Das Aufgabe ist ausgeliefert.
+Released --> [*]
+
+Epic : Die Aufgabe war zu groß und wurde\ndaher in mehrere Aufgaben zerlegt.
+Epic --> [*]
+
+Canceled : Die Aufgabe soll nicht (mehr)\nbearbeitet werden.
+Canceled --> [*]
+
+@enduml
