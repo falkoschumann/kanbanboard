@@ -1,5 +1,5 @@
 /*
- * TodoMVC - Frontend
+ * Kanban Board - Frontend
  * Copyright (c) 2020 Falko Schumann <falko.schumann@muspellheim.de>
  */
 

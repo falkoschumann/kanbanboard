@@ -1,5 +1,5 @@
 /*
- * TodoMVC - Application
+ * Kanban Board - Application
  * Copyright (c) 2020 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
