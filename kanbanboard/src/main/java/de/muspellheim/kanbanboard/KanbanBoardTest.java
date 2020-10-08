@@ -25,10 +25,23 @@ public class KanbanBoardTest extends Application {
             List.of(
                 new ActivityColumn(
                     "To Do",
+                    ActivityColumn.UNLIMITED_WIP,
+                    List.of(),
                     List.of(new TicketCell("Use Kanban"), new TicketCell("Try Kanban tool"))),
-                new ActivityColumn("Doing", List.of(new TicketCell("Learn about Kanban"))),
+                new ActivityColumn(
+                    "Doing",
+                    2,
+                    List.of(
+                        new ActivityColumn(
+                            "In Progress",
+                            0,
+                            List.of(),
+                            List.of(new TicketCell("Learn about Kanban"))),
+                        new ActivityColumn("Complete", 0))),
                 new ActivityColumn(
                     "Done",
+                    ActivityColumn.UNLIMITED_WIP,
+                    List.of(),
                     List.of(
                         new TicketCell("Get some sticky notes!"),
                         new TicketCell("Get a whiteboard")))));

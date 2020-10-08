@@ -17,6 +17,10 @@ import javafx.scene.control.Skin;
 
 public class ActivityColumn extends Control {
 
+  // TODO: Sub Columns mit gestrichelter Linie trennen
+  // TODO: Sub Columns ohne Border und Padding
+  // TODO: Sub Columns ohne WIP: WIP aus Layout entfernen
+
   /***************************************************************************
    *                                                                         *
    * Static properties and methods                                           *
@@ -33,12 +37,21 @@ public class ActivityColumn extends Control {
 
   public ActivityColumn() {}
 
-  public ActivityColumn(String title) {
+  public ActivityColumn(String title, int wip) {
     setTitle(title);
+    setWip(wip);
   }
 
-  public ActivityColumn(String title, List<TicketCell> tickets) {
+  public ActivityColumn(String title, int wip, List<ActivityColumn> columns) {
     setTitle(title);
+    setWip(wip);
+    getColumns().setAll(columns);
+  }
+
+  public ActivityColumn(String title, int wip, List<ActivityColumn> columns, List<TicketCell> tickets) {
+    setTitle(title);
+    setWip(wip);
+    getColumns().setAll(columns);
     getTickets().setAll(tickets);
   }
 

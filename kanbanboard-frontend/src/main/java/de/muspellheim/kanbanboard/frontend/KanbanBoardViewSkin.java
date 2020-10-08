@@ -10,7 +10,7 @@ import javafx.scene.control.SkinBase;
 import javafx.scene.layout.HBox;
 
 public class KanbanBoardViewSkin extends SkinBase<KanbanBoardView> {
-  private HBox content;
+  private HBox columnsContainer;
 
   protected KanbanBoardViewSkin(KanbanBoardView control) {
     super(control);
@@ -19,18 +19,18 @@ public class KanbanBoardViewSkin extends SkinBase<KanbanBoardView> {
   }
 
   private void build() {
-    content = new HBox();
-    content.getStyleClass().add("kanban-board-view");
+    columnsContainer = new HBox();
+    columnsContainer.getStyleClass().add("kanban-board-view");
 
     // TODO: Für ScrollPane müssen wohl noch min, max und pref definiert werden
     // ScrollPane container = new ScrollPane(content);
-    getChildren().setAll(content);
+    getChildren().setAll(columnsContainer);
   }
 
   private void bind() {
-    InvalidationListener ticketListener =
-        observable -> content.getChildren().setAll(getSkinnable().getColumns());
-    getSkinnable().getColumns().addListener(ticketListener);
-    ticketListener.invalidated(getSkinnable().getColumns());
+    InvalidationListener columnsListener =
+        observable -> columnsContainer.getChildren().setAll(getSkinnable().getColumns());
+    getSkinnable().getColumns().addListener(columnsListener);
+    columnsListener.invalidated(getSkinnable().getColumns());
   }
 }
