@@ -6,40 +6,22 @@
 package de.muspellheim.kanbanboard.frontend;
 
 import java.util.List;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 
-public class ActivityColumn extends Control {
-
-  /***************************************************************************
-   *                                                                         *
-   * Static properties and methods                                           *
-   *                                                                         *
-   **************************************************************************/
-
-  public static final int UNLIMITED_WIP = -1;
-
+public class KanbanBoardView extends Control {
   /***************************************************************************
    *                                                                         *
    * Constructors                                                            *
    *                                                                         *
    **************************************************************************/
 
-  public ActivityColumn() {}
+  public KanbanBoardView() {}
 
-  public ActivityColumn(String title) {
-    setTitle(title);
-  }
-
-  public ActivityColumn(String title, List<TicketCell> tickets) {
-    setTitle(title);
-    getTickets().setAll(tickets);
+  public KanbanBoardView(List<ActivityColumn> columns) {
+    getColumns().setAll(columns);
   }
 
   /***************************************************************************
@@ -49,44 +31,6 @@ public class ActivityColumn extends Control {
    **************************************************************************/
 
   private final ObservableList<ActivityColumn> columns = FXCollections.observableArrayList();
-
-  private final ObservableList<TicketCell> tickets = FXCollections.observableArrayList();
-
-  /***************************************************************************
-   *                                                                         *
-   * Properties                                                              *
-   *                                                                         *
-   **************************************************************************/
-
-  // --- Title
-  private StringProperty title = new SimpleStringProperty(this, "text", "");
-
-  public final StringProperty titleProperty() {
-    return title;
-  }
-
-  public final void setTitle(String value) {
-    title.set(value);
-  }
-
-  public final String getTitle() {
-    return title.get();
-  }
-
-  // --- WIP
-  private IntegerProperty wip = new SimpleIntegerProperty(this, "wip", UNLIMITED_WIP);
-
-  public final IntegerProperty wipProperty() {
-    return wip;
-  }
-
-  public final void setWip(int value) {
-    wip.set(value);
-  }
-
-  public final int getWip() {
-    return wip.get();
-  }
 
   /***************************************************************************
    *                                                                         *
@@ -98,10 +42,6 @@ public class ActivityColumn extends Control {
     return columns;
   }
 
-  public final ObservableList<TicketCell> getTickets() {
-    return tickets;
-  }
-
   /***************************************************************************
    *                                                                         *
    * Methods                                                                 *
@@ -110,11 +50,11 @@ public class ActivityColumn extends Control {
 
   @Override
   protected Skin<?> createDefaultSkin() {
-    return new ActivityColumnSkin(this);
+    return new KanbanBoardViewSkin(this);
   }
 
   @Override
   public String getUserAgentStylesheet() {
-    return ActivityColumn.class.getResource("activity-column.css").toExternalForm();
+    return KanbanBoardView.class.getResource("kanban-board-view.css").toExternalForm();
   }
 }

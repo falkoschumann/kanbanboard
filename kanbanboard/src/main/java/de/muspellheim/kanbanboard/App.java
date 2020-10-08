@@ -8,7 +8,7 @@ package de.muspellheim.kanbanboard;
 import de.muspellheim.kanbanboard.backend.MessageHandler;
 import de.muspellheim.kanbanboard.backend.adapters.TodoJsonRepository;
 import de.muspellheim.kanbanboard.contract.messages.queries.TodoListQuery;
-import de.muspellheim.kanbanboard.frontend.*;
+import de.muspellheim.kanbanboard.frontend.TodoAppViewController;
 import java.nio.file.Paths;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -25,19 +25,10 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) {
-    ActivityColumn column = new ActivityColumn();
-    column.setText("To Do");
-
-    Scene scene = new Scene(column);
-    primaryStage.setScene(scene);
-    primaryStage.show();
-
-    /*
     stage = primaryStage;
     build();
     bind();
     run();
-       */
   }
 
   private void build() {

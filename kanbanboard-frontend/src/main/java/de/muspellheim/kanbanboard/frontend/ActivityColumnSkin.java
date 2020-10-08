@@ -5,14 +5,18 @@
 
 package de.muspellheim.kanbanboard.frontend;
 
-import javafx.beans.*;
-import javafx.geometry.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.beans.InvalidationListener;
+import javafx.beans.WeakInvalidationListener;
+import javafx.geometry.Orientation;
+import javafx.scene.control.Label;
+import javafx.scene.control.SkinBase;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 
 public class ActivityColumnSkin extends SkinBase<ActivityColumn> {
   private Label wipText;
-  private Label headerText;
+  private Label title;
+  private FlowPane content;
 
   protected ActivityColumnSkin(ActivityColumn control) {
     super(control);
@@ -24,29 +28,15 @@ public class ActivityColumnSkin extends SkinBase<ActivityColumn> {
     // Header
     wipText = new Label();
     wipText.getStyleClass().add("wip");
-    headerText = new Label();
-    headerText.getStyleClass().add("headerText");
+    title = new Label();
+    title.getStyleClass().add("title");
     VBox header = new VBox();
     header.getStyleClass().add("header");
-    header.setAlignment(Pos.CENTER);
-    header.getChildren().addAll(wipText, headerText);
+    header.getChildren().addAll(wipText, title);
 
     // Content
-    FlowPane content = new FlowPane(Orientation.HORIZONTAL, 10, 10);
-    content.setPadding(new Insets(10));
-    content
-        .getChildren()
-        .setAll(
-            new Label("Lorem ipsum"),
-            new Label("Lorem ipsum"),
-            new Label("Lorem ipsum"),
-            new Label("Lorem ipsum"),
-            new Label("Lorem ipsum"),
-            new Label("Lorem ipsum"),
-            new Label("Lorem ipsum"),
-            new Label("Lorem ipsum"),
-            new Label("Lorem ipsum"),
-            new Label("Lorem ipsum"));
+    content = new FlowPane(Orientation.HORIZONTAL, 10, 10);
+    content.getStyleClass().add("content");
 
     // Container
     VBox container = new VBox();
@@ -58,10 +48,19 @@ public class ActivityColumnSkin extends SkinBase<ActivityColumn> {
   private void bind() {
     InvalidationListener wipListener =
         new WeakInvalidationListener(
-            observable -> wipText.setText("(" + getSkinnable().getWip() + ")"));
+            observable ->
+                wipText.setText(
+                    "("
+                        + (getSkinnable().getWip() == -1 ? "\u221E" : getSkinnable().getWip())
+                        + ")"));
     getSkinnable().wipProperty().addListener(wipListener);
     wipListener.invalidated(getSkinnable().wipProperty());
 
-    headerText.textProperty().bind(getSkinnable().textProperty());
+    InvalidationListener ticketListener =
+        observable -> content.getChildren().setAll(getSkinnable().getTickets());
+    getSkinnable().getTickets().addListener(ticketListener);
+    ticketListener.invalidated(getSkinnable().getTickets());
+
+    title.textProperty().bind(getSkinnable().titleProperty());
   }
 }
