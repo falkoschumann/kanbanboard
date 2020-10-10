@@ -1,31 +1,38 @@
 .activity-column {
-    -fx-border-width: 2;
-    -fx-border-color: #000;
-    -fx-border-style: solid;
-    -fx-border-insets: -1;
-    -fx-background-color: #fff;
-    -fx-font-family: Verdana Arial sans-serif;
-    -fx-text-fill: #333333;
+  -fx-border-width: 2;
+  -fx-border-color: #000;
+  -fx-border-style: solid;
+  -fx-border-insets: -1;
+  -fx-background-color: #fff;
+  -fx-font-family: Verdana Arial sans-serif;
+  -fx-text-fill: #333333;
 }
 
 .activity-column .header {
-    -fx-border-width: 0 0 2 0;
-    -fx-border-color: #000;
-    -fx-border-style: solid;
-    -fx-padding: 7;
-    -fx-alignment: center;
-    -fx-font-size: 90%;
+  -fx-border-width: 0 0 2 0;
+  -fx-border-color: #000;
+  -fx-border-style: solid;
+  -fx-padding: 7;
+  -fx-alignment: center;
+  -fx-font-size: 90%;
 }
 
 .activity-column .header .wip {
-    -fx-font-size: 90%;
+  -fx-font-size: 90%;
 }
 
 .activity-column .header .title {
-    -fx-font-size: 120%;
-    -fx-font-weight: bold;
+  -fx-font-size: 120%;
+  -fx-font-weight: bold;
 }
 
-.activity-column .content {
-    -fx-padding: 10;
+.activity-column .content .tickets {
+  -fx-padding: 10;
+}
+
+.activity-column .content .columns {
+}
+
+.activity-column .activity-column {
+  -fx-border-insets: -2;
 }
