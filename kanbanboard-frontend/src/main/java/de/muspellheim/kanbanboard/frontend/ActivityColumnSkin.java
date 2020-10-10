@@ -62,8 +62,8 @@ public class ActivityColumnSkin extends SkinBase<ActivityColumn> {
             observable ->
                 wipText.setText(
                     switch (getSkinnable().getWip()) {
-                      case -1 -> "(\u221E)";
-                      case 0 -> "";
+                      case ActivityColumn.UNLIMITED_WIP -> "(\u221E)";
+                      case ActivityColumn.HIDE_WIP -> "";
                       default -> "(" + getSkinnable().getWip() + ")";
                     }));
     getSkinnable().wipProperty().addListener(wipListener);

@@ -5,6 +5,7 @@
 
 package de.muspellheim.kanbanboard.frontend;
 
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
@@ -27,6 +28,21 @@ public class KanbanBoardView extends Control {
 
   public final ObservableList<ActivityColumn> getColumns() {
     return columns;
+  }
+
+  public ActivityColumn getColumn(String columnName) {
+    var columnPath = List.of(columnName.split("/"));
+    var column = columns.filtered(it -> it.getTitle().equals(columnPath.get(0))).get(0);
+    return getColumn(column, columnPath.subList(1, columnPath.size()));
+  }
+
+  private ActivityColumn getColumn(ActivityColumn column, List<String> columnPath) {
+    if (columnPath.isEmpty()) {
+      return column;
+    }
+
+    column = column.getColumns().filtered(it -> it.getTitle().equals(columnPath.get(0))).get(0);
+    return getColumn(column, columnPath.subList(1, columnPath.size()));
   }
 
   /***************************************************************************

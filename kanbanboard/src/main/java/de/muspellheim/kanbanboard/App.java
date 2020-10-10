@@ -7,9 +7,16 @@ package de.muspellheim.kanbanboard;
 
 import de.muspellheim.kanbanboard.backend.MessageHandler;
 import de.muspellheim.kanbanboard.backend.adapters.TodoJsonRepository;
+import de.muspellheim.kanbanboard.contract.messages.queries.TicketQueryResult;
+import de.muspellheim.kanbanboard.contract.messages.queries.TicketQueryResult.Ticket;
 import de.muspellheim.kanbanboard.contract.messages.queries.TodoListQuery;
+import de.muspellheim.kanbanboard.contract.messages.queries.WorkflowQueryResult;
+import de.muspellheim.kanbanboard.contract.messages.queries.WorkflowQueryResult.Activity;
+import de.muspellheim.kanbanboard.frontend.KanbanBoardDialog;
 import de.muspellheim.kanbanboard.frontend.TodoAppViewController;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.Map;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -25,10 +32,35 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) {
-    stage = primaryStage;
-    build();
-    bind();
-    run();
+    var dialog = new KanbanBoardDialog();
+
+    WorkflowQueryResult workflowQueryResult =
+        new WorkflowQueryResult(
+            List.of(
+                Activity.of("To Do", Activity.UNLIMITED_WIP),
+                Activity.of(
+                    "Doing", 2, List.of(Activity.of("In Progress"), Activity.of("Complete"))),
+                Activity.of("Done", Activity.UNLIMITED_WIP)));
+    dialog.display(workflowQueryResult);
+
+    TicketQueryResult ticketQueryResult =
+        new TicketQueryResult(
+            Map.of(
+                "To Do", List.of(new Ticket("Use Kanban"), new Ticket("Try Kanban tool")),
+                "Doing/In Progress", List.of(new Ticket("Learn about Kanban")),
+                "Done",
+                    List.of(new Ticket("Get some sticky notes!"), new Ticket("Get a whiteboard"))));
+    dialog.display(ticketQueryResult);
+
+    var scene = new Scene(dialog, 800, 600);
+    primaryStage.setScene(scene);
+    primaryStage.setTitle("TodoMVC");
+    primaryStage.show();
+
+    // stage = primaryStage;
+    // build();
+    // bind();
+    // run();
   }
 
   private void build() {

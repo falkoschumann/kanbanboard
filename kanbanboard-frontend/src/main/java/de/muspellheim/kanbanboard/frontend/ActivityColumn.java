@@ -74,7 +74,7 @@ public class ActivityColumn extends Control {
   }
 
   // --- WIP
-  private IntegerProperty wip = new SimpleIntegerProperty(this, "wip", UNLIMITED_WIP);
+  private IntegerProperty wip = new SimpleIntegerProperty(this, "wip", HIDE_WIP);
 
   public final IntegerProperty wipProperty() {
     return wip;
