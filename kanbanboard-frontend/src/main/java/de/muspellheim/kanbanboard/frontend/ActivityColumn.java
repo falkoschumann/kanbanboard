@@ -48,7 +48,8 @@ public class ActivityColumn extends Control {
     getColumns().setAll(columns);
   }
 
-  public ActivityColumn(String title, int wip, List<ActivityColumn> columns, List<TicketCell> tickets) {
+  public ActivityColumn(
+      String title, int wip, List<ActivityColumn> columns, List<TicketCell> tickets) {
     setTitle(title);
     setWip(wip);
     getColumns().setAll(columns);
