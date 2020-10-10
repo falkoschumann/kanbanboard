@@ -8,7 +8,6 @@ package de.muspellheim.kanbanboard;
 import de.muspellheim.kanbanboard.frontend.ActivityColumn;
 import de.muspellheim.kanbanboard.frontend.KanbanBoardView;
 import de.muspellheim.kanbanboard.frontend.TicketCell;
-import java.util.List;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -20,31 +19,22 @@ public class KanbanBoardTest extends Application {
 
   @Override
   public void start(Stage primaryStage) {
-    KanbanBoardView kanbanBoardView =
-        new KanbanBoardView(
-            List.of(
-                new ActivityColumn(
-                    "To Do",
-                    ActivityColumn.UNLIMITED_WIP,
-                    List.of(),
-                    List.of(new TicketCell("Use Kanban"), new TicketCell("Try Kanban tool"))),
-                new ActivityColumn(
-                    "Doing",
-                    2,
-                    List.of(
-                        new ActivityColumn(
-                            "In Progress",
-                            0,
-                            List.of(),
-                            List.of(new TicketCell("Learn about Kanban"))),
-                        new ActivityColumn("Complete", 0))),
-                new ActivityColumn(
-                    "Done",
-                    ActivityColumn.UNLIMITED_WIP,
-                    List.of(),
-                    List.of(
-                        new TicketCell("Get some sticky notes!"),
-                        new TicketCell("Get a whiteboard")))));
+    var toDoColumn = new ActivityColumn("To Do", ActivityColumn.UNLIMITED_WIP);
+    toDoColumn.getTickets().setAll(new TicketCell("Use Kanban"), new TicketCell("Try Kanban tool"));
+
+    var doingColumn = new ActivityColumn("Doing", 2);
+    var doingInProgressColumn = new ActivityColumn("In Progress");
+    doingInProgressColumn.getTickets().setAll(new TicketCell("Learn about Kanban"));
+    var doingCompleteColumn = new ActivityColumn("Complete");
+    doingColumn.getColumns().addAll(doingInProgressColumn, doingCompleteColumn);
+
+    var doneColumn = new ActivityColumn("Done", ActivityColumn.UNLIMITED_WIP);
+    doneColumn
+        .getTickets()
+        .setAll(new TicketCell("Get some sticky notes!"), new TicketCell("Get a whiteboard"));
+
+    var kanbanBoardView = new KanbanBoardView();
+    kanbanBoardView.getColumns().setAll(toDoColumn, doingColumn, doneColumn);
 
     Scene scene = new Scene(kanbanBoardView, 800, 600);
     primaryStage.setScene(scene);

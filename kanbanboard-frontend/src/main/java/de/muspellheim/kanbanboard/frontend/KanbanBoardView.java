@@ -5,25 +5,12 @@
 
 package de.muspellheim.kanbanboard.frontend;
 
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 
 public class KanbanBoardView extends Control {
-  /***************************************************************************
-   *                                                                         *
-   * Constructors                                                            *
-   *                                                                         *
-   **************************************************************************/
-
-  public KanbanBoardView() {}
-
-  public KanbanBoardView(List<ActivityColumn> columns) {
-    getColumns().setAll(columns);
-  }
-
   /***************************************************************************
    *                                                                         *
    * Instance Variables                                                      *

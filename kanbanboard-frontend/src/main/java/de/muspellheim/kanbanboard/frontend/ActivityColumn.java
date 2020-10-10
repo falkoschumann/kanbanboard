@@ -5,7 +5,6 @@
 
 package de.muspellheim.kanbanboard.frontend;
 
-import java.util.List;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,11 +15,6 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 
 public class ActivityColumn extends Control {
-
-  // TODO: Sub Columns mit gestrichelter Linie trennen
-  // TODO: Sub Columns ohne Border und Padding
-  // TODO: Sub Columns ohne WIP: WIP aus Layout entfernen
-
   /***************************************************************************
    *                                                                         *
    * Static properties and methods                                           *
@@ -28,6 +22,8 @@ public class ActivityColumn extends Control {
    **************************************************************************/
 
   public static final int UNLIMITED_WIP = -1;
+
+  public static final int HIDE_WIP = 0;
 
   /***************************************************************************
    *                                                                         *
@@ -37,23 +33,13 @@ public class ActivityColumn extends Control {
 
   public ActivityColumn() {}
 
+  public ActivityColumn(String title) {
+    setTitle(title);
+  }
+
   public ActivityColumn(String title, int wip) {
     setTitle(title);
     setWip(wip);
-  }
-
-  public ActivityColumn(String title, int wip, List<ActivityColumn> columns) {
-    setTitle(title);
-    setWip(wip);
-    getColumns().setAll(columns);
-  }
-
-  public ActivityColumn(
-      String title, int wip, List<ActivityColumn> columns, List<TicketCell> tickets) {
-    setTitle(title);
-    setWip(wip);
-    getColumns().setAll(columns);
-    getTickets().setAll(tickets);
   }
 
   /***************************************************************************
