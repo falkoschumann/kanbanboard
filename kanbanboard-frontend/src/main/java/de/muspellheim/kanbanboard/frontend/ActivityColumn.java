@@ -15,21 +15,13 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 
 public class ActivityColumn extends Control {
-  /***************************************************************************
-   *                                                                         *
-   * Static properties and methods                                           *
-   *                                                                         *
-   **************************************************************************/
-
   public static final int UNLIMITED_WIP = -1;
-
   public static final int HIDE_WIP = 0;
 
-  /***************************************************************************
-   *                                                                         *
-   * Constructors                                                            *
-   *                                                                         *
-   **************************************************************************/
+  private final ObservableList<ActivityColumn> columns = FXCollections.observableArrayList();
+  private final ObservableList<TicketCell> tickets = FXCollections.observableArrayList();
+  private StringProperty title = new SimpleStringProperty(this, "text", "");
+  private IntegerProperty wip = new SimpleIntegerProperty(this, "wip", HIDE_WIP);
 
   public ActivityColumn() {}
 
@@ -41,25 +33,6 @@ public class ActivityColumn extends Control {
     setTitle(title);
     setWip(wip);
   }
-
-  /***************************************************************************
-   *                                                                         *
-   * Instance Variables                                                      *
-   *                                                                         *
-   **************************************************************************/
-
-  private final ObservableList<ActivityColumn> columns = FXCollections.observableArrayList();
-
-  private final ObservableList<TicketCell> tickets = FXCollections.observableArrayList();
-
-  /***************************************************************************
-   *                                                                         *
-   * Properties                                                              *
-   *                                                                         *
-   **************************************************************************/
-
-  // --- Title
-  private StringProperty title = new SimpleStringProperty(this, "text", "");
 
   public final StringProperty titleProperty() {
     return title;
@@ -73,9 +46,6 @@ public class ActivityColumn extends Control {
     return title.get();
   }
 
-  // --- WIP
-  private IntegerProperty wip = new SimpleIntegerProperty(this, "wip", HIDE_WIP);
-
   public final IntegerProperty wipProperty() {
     return wip;
   }
@@ -88,12 +58,6 @@ public class ActivityColumn extends Control {
     return wip.get();
   }
 
-  /***************************************************************************
-   *                                                                         *
-   * Public API                                                              *
-   *                                                                         *
-   **************************************************************************/
-
   public final ObservableList<ActivityColumn> getColumns() {
     return columns;
   }
@@ -101,12 +65,6 @@ public class ActivityColumn extends Control {
   public final ObservableList<TicketCell> getTickets() {
     return tickets;
   }
-
-  /***************************************************************************
-   *                                                                         *
-   * Methods                                                                 *
-   *                                                                         *
-   **************************************************************************/
 
   @Override
   protected Skin<?> createDefaultSkin() {

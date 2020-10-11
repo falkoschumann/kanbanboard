@@ -6,7 +6,6 @@
 package de.muspellheim.kanbanboard.frontend;
 
 import javafx.beans.InvalidationListener;
-import javafx.beans.WeakInvalidationListener;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
 import javafx.scene.control.SkinBase;
@@ -16,6 +15,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class ActivityColumnSkin extends SkinBase<ActivityColumn> {
+  protected VBox container;
   private Label wipText;
   private Label title;
   private HBox columnsContainer;
@@ -50,22 +50,25 @@ public class ActivityColumnSkin extends SkinBase<ActivityColumn> {
     content.getChildren().setAll(ticketsContainer, columnsContainer);
 
     // Container
-    var container = new VBox();
+    container = new VBox();
     container.getStyleClass().add("activity-column");
     container.getChildren().setAll(header, content);
     getChildren().setAll(container);
   }
 
   private void bind() {
-    var wipListener =
-        new WeakInvalidationListener(
-            observable ->
-                wipText.setText(
-                    switch (getSkinnable().getWip()) {
-                      case ActivityColumn.UNLIMITED_WIP -> "(\u221E)";
-                      case ActivityColumn.HIDE_WIP -> "";
-                      default -> "(" + getSkinnable().getWip() + ")";
-                    }));
+    InvalidationListener wipListener =
+        observable -> {
+          wipText.setText(
+              switch (getSkinnable().getWip()) {
+                case ActivityColumn.UNLIMITED_WIP -> "(\u221E)";
+                case ActivityColumn.HIDE_WIP -> "";
+                default -> "(" + getSkinnable().getWip() + ")";
+              });
+          var showWip = getSkinnable().getWip() != ActivityColumn.HIDE_WIP;
+          wipText.setVisible(showWip);
+          wipText.setManaged(showWip);
+        };
     getSkinnable().wipProperty().addListener(wipListener);
     wipListener.invalidated(getSkinnable().wipProperty());
 
@@ -82,14 +85,14 @@ public class ActivityColumnSkin extends SkinBase<ActivityColumn> {
 
   private void updateContent() {
     columnsContainer.getChildren().setAll(getSkinnable().getColumns());
-    var hasColumns = !columnsContainer.getChildren().isEmpty();
-    columnsContainer.setVisible(hasColumns);
-    columnsContainer.setManaged(hasColumns);
+    var showColumns = !columnsContainer.getChildren().isEmpty();
+    columnsContainer.setVisible(showColumns);
+    columnsContainer.setManaged(showColumns);
     columnsContainer.getChildren().forEach(it -> HBox.setHgrow(it, Priority.ALWAYS));
 
     ticketsContainer.getChildren().setAll(getSkinnable().getTickets());
-    var hasTickets = !ticketsContainer.getChildren().isEmpty();
-    ticketsContainer.setVisible(hasTickets || !hasColumns);
-    ticketsContainer.setManaged(hasTickets || !hasColumns);
+    var showTickets = !ticketsContainer.getChildren().isEmpty();
+    ticketsContainer.setVisible(showTickets || !showColumns);
+    ticketsContainer.setManaged(showTickets || !showColumns);
   }
 }

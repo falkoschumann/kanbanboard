@@ -22,11 +22,11 @@ public class MyKanbanBoard extends KanbanBoardPane {
     columns.put("Doing", doingColumn);
     getChildren().add(doingColumn);
 
-    var inProgressColumn = new ActivityColumn("In Progress");
+    var inProgressColumn = new SubColumn("In Progress");
     doingColumn.getColumns().add(inProgressColumn);
     columns.put("Doing/In Progress", inProgressColumn);
 
-    var completeColumn = new ActivityColumn("Complete");
+    var completeColumn = new SubColumn("Complete");
     doingColumn.getColumns().add(completeColumn);
     columns.put("Doing/Complete", completeColumn);
 
