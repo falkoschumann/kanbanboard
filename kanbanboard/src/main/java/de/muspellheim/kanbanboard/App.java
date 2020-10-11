@@ -10,9 +10,7 @@ import de.muspellheim.kanbanboard.backend.adapters.TodoJsonRepository;
 import de.muspellheim.kanbanboard.contract.messages.queries.TicketQueryResult;
 import de.muspellheim.kanbanboard.contract.messages.queries.TicketQueryResult.Ticket;
 import de.muspellheim.kanbanboard.contract.messages.queries.TodoListQuery;
-import de.muspellheim.kanbanboard.contract.messages.queries.WorkflowQueryResult;
-import de.muspellheim.kanbanboard.contract.messages.queries.WorkflowQueryResult.Activity;
-import de.muspellheim.kanbanboard.frontend.KanbanBoardDialog;
+import de.muspellheim.kanbanboard.frontend.MyKanbanBoard;
 import de.muspellheim.kanbanboard.frontend.TodoAppViewController;
 import java.nio.file.Paths;
 import java.util.List;
@@ -32,16 +30,7 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) {
-    var dialog = new KanbanBoardDialog();
-
-    WorkflowQueryResult workflowQueryResult =
-        new WorkflowQueryResult(
-            List.of(
-                Activity.of("To Do", Activity.UNLIMITED_WIP),
-                Activity.of(
-                    "Doing", 2, List.of(Activity.of("In Progress"), Activity.of("Complete"))),
-                Activity.of("Done", Activity.UNLIMITED_WIP)));
-    dialog.display(workflowQueryResult);
+    var dialog = new MyKanbanBoard();
 
     TicketQueryResult ticketQueryResult =
         new TicketQueryResult(
