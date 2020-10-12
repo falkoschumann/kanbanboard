@@ -5,12 +5,9 @@
 
 package de.muspellheim.kanbanboard.frontend;
 
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 public class ExampleKanbanBoard extends KanbanBoardPane {
   public ExampleKanbanBoard() {
