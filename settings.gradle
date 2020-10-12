@@ -1,0 +1,5 @@
+rootProject.name = 'kanbanboard-root'
+include 'kanbanboard'
+include 'kanbanboard-frontend'
+include 'kanbanboard-backend'
+include 'kanbanboard-contract'

@@ -1,0 +1,46 @@
+.activity-column {
+  -fx-background-color: #fff;
+  -fx-border-width: 2;
+  -fx-border-color: #000;
+  -fx-border-insets: -1;
+  -fx-font-family: Verdana Arial sans-serif;
+  -fx-text-fill: #333333;
+}
+
+.activity-column.sub-column {
+  -fx-border-style: dashed;
+}
+
+.activity-column.sub-column .header {
+  -fx-border-width: 0;
+}
+
+.activity-column.sub-column .header .title {
+  -fx-font-weight: normal;
+  -fx-font-style: italic;
+}
+
+.activity-column .activity-column {
+  -fx-border-insets: -2;
+}
+
+.activity-column .header {
+  -fx-padding: 7;
+  -fx-border-width: 0 0 2 0;
+  -fx-border-color: #000;
+  -fx-alignment: center;
+  -fx-font-size: 90%;
+}
+
+.activity-column .header .wip {
+  -fx-font-size: 90%;
+}
+
+.activity-column .header .title {
+  -fx-font-size: 120%;
+  -fx-font-weight: bold;
+}
+
+.activity-column .content .tickets {
+  -fx-padding: 10;
+}

@@ -1,0 +1,5 @@
+/*
+ * Kanban Board - Backend
+ * Copyright (c) $YEAR Falko Schumann <falko.schumann@muspellheim.de>
+ */
+

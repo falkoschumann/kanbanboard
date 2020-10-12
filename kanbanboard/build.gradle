@@ -1,0 +1,25 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin'
+    id 'org.beryx.jlink'
+}
+
+dependencies {
+    implementation project(':kanbanboard-frontend')
+    implementation project(':kanbanboard-backend')
+}
+
+javafx {
+    modules = ['javafx.controls']
+}
+
+application {
+    mainModule = 'de.muspellheim.kanbanboard'
+    mainClass = 'de.muspellheim.kanbanboard.App'
+}
+
+jlink {
+    launcher {
+        name = 'kanbanboard'
+    }
+}
