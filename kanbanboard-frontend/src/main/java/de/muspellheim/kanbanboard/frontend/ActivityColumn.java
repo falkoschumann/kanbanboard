@@ -18,10 +18,10 @@ public class ActivityColumn extends Control {
   public static final int UNLIMITED_WIP = -1;
   public static final int HIDE_WIP = 0;
 
+  private final StringProperty title = new SimpleStringProperty(this, "text");
+  private final IntegerProperty wip = new SimpleIntegerProperty(this, "wip", HIDE_WIP);
   private final ObservableList<ActivityColumn> columns = FXCollections.observableArrayList();
-  private final ObservableList<TicketCell> tickets = FXCollections.observableArrayList();
-  private StringProperty title = new SimpleStringProperty(this, "text", "");
-  private IntegerProperty wip = new SimpleIntegerProperty(this, "wip", HIDE_WIP);
+  private final ObservableList<TicketCard> tickets = FXCollections.observableArrayList();
 
   public ActivityColumn() {}
 
@@ -38,31 +38,31 @@ public class ActivityColumn extends Control {
     return title;
   }
 
-  public final void setTitle(String value) {
-    title.set(value);
-  }
-
   public final String getTitle() {
     return title.get();
+  }
+
+  public final void setTitle(String value) {
+    title.set(value);
   }
 
   public final IntegerProperty wipProperty() {
     return wip;
   }
 
-  public final void setWip(int value) {
-    wip.set(value);
-  }
-
   public final int getWip() {
     return wip.get();
+  }
+
+  public final void setWip(int value) {
+    wip.set(value);
   }
 
   public final ObservableList<ActivityColumn> getColumns() {
     return columns;
   }
 
-  public final ObservableList<TicketCell> getTickets() {
+  public final ObservableList<TicketCard> getTickets() {
     return tickets;
   }
 

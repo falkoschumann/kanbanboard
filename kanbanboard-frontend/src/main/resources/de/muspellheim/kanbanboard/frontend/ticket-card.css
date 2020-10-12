@@ -1,7 +1,10 @@
-.ticket {
-    -fx-text-fill: #333333;
+.ticket-card {
+    -fx-pref-width: 200;
+    -fx-pref-height: 200;
+    -fx-padding: 7;
     -fx-background-color: #FFFF99;
     -fx-effect: dropshadow(gaussian, #808080, 5, 0.25, 2, 2);
+    -fx-text-fill: #333333;
     /*-fx-background-color: #FFC0CB;*/
     /*-fx-background-color: #AA00FF;*/
     /*-fx-background-color: #60A917;*/
